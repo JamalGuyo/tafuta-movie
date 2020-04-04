@@ -3,6 +3,7 @@ const app = express();
 
 // setup
 app.set("view engine", "ejs");
+app.use(express.static("public"));
 
 // routes
 app.get("/", (req, res) => {
