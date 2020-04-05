@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
+const request = require("request");
+const bodyParser = require("body-parser");
 
 // setup
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // TODO: REMOVE TEST DATA BELOW. TO
 const data = {
