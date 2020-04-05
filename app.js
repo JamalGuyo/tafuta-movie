@@ -1,65 +1,12 @@
 const express = require("express");
 const app = express();
+const request = require("request");
+const bodyParser = require("body-parser");
 
 // setup
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-
-// TODO: REMOVE TEST DATA BELOW. TO
-const data = {
-  Search: [
-    {
-      Title: "The Guard",
-      Year: 2001,
-      Type: "series",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
-    },
-    {
-      Title: "The Guard",
-      Year: 2001,
-      Type: "series",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
-    },
-    {
-      Title: "The Guard",
-      Year: 2001,
-      Type: "series",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
-    },
-    {
-      Title: "The Guard",
-      Year: 2001,
-      Type: "series",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
-    },
-    {
-      Title: "The Guard",
-      Year: 2001,
-      Type: "series",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
-    },
-    {
-      Title: "The Guard",
-      Year: 2001,
-      Type: "series",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
-    },
-    {
-      Title: "The Guard",
-      Year: 2001,
-      Type: "series",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
-    },
-  ],
-};
-const searchTitle = "WhatToSearch";
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.get("/", (req, res) => {
@@ -67,7 +14,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/results", (req, res) => {
-  res.render("resultsPage", { data: data.Search, searchTitle });
+  let searchTerm = req.query.searchTerm;
+  request(
+    `http://www.omdbapi.com/?s=${searchTerm}&apikey=thewdb`,
+    (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        let data = JSON.parse(body);
+        res.render("resultsPage", {
+          data: data.Search,
+          searchTerm,
+        });
+      }
+    }
+  );
 });
 
 app.get("*", (req, res) => {
