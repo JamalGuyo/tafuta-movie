@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+<div class="results-container">
+  <div class="content">
+    <header>
+      <!-- TODO: REPLACE WITH SEARCH HEADING -->
+      <h1>
+        <span>10</span> search results for <span><%= searchTitle %></span>
+      </h1>
+    </header>
+    <div class="card-container">
+      <!-- TODO: TO LOOP THROUGH DATA -->
+      <% data.forEach(movie => { %>
+      <div class="card">
+        <!-- TODO: REPLACE WITH DATA CONTENT -->
+        <div class="card-img">
+          <img src="<%= movie.Poster %>" alt="movie poster" />
+        </div>
+        <div class="card-content">
+          <p><%= movie.Title %></p>
+          <p>
+            <span><%= movie.Type %></span>
+            <span><%= movie.Year %></span>
+          </p>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

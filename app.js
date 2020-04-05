@@ -5,9 +5,69 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+// TODO: REMOVE TEST DATA BELOW. TO
+const data = {
+  Search: [
+    {
+      Title: "The Guard",
+      Year: 2001,
+      Type: "series",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
+    },
+    {
+      Title: "The Guard",
+      Year: 2001,
+      Type: "series",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
+    },
+    {
+      Title: "The Guard",
+      Year: 2001,
+      Type: "series",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
+    },
+    {
+      Title: "The Guard",
+      Year: 2001,
+      Type: "series",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
+    },
+    {
+      Title: "The Guard",
+      Year: 2001,
+      Type: "series",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
+    },
+    {
+      Title: "The Guard",
+      Year: 2001,
+      Type: "series",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
+    },
+    {
+      Title: "The Guard",
+      Year: 2001,
+      Type: "series",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNTBjY2M0ZjYtYjYxZC00NjhiLWIxZWUtOTc5YTU1NTlmMDNlXkEyXkFqcGdeQXVyMjQzMzQzODY@._V1_SX300.jpg",
+    },
+  ],
+};
+const searchTitle = "WhatToSearch";
+
 // routes
 app.get("/", (req, res) => {
   res.render("home");
+});
+
+app.get("/results", (req, res) => {
+  res.render("resultsPage", { data: data.Search, searchTitle });
 });
 
 app.get("*", (req, res) => {
