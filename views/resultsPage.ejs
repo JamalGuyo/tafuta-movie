@@ -16,7 +16,11 @@
           <img src="<%= movie.Poster %>" alt="movie poster" />
         </div>
         <div class="card-content">
-          <%= movie.Title %> <%= movie.Year %> <%= movie.Type %>
+          <p><%= movie.Title %></p>
+          <p>
+            <span><%= movie.Type %></span>
+            <span><%= movie.Year %></span>
+          </p>
         </div>
       </div>
       <% }) %>
