@@ -10,6 +10,10 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/results", (req, res) => {
+  res.render("resultsPage");
+});
+
 app.get("*", (req, res) => {
   res.send("404 Page Not Found");
 });
