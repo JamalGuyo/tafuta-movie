@@ -3,14 +3,23 @@
   <div class="content">
     <header>
       <!-- TODO: REPLACE WITH SEARCH HEADING -->
-      <h1>Results Page</h1>
+      <h1>
+        <span>10</span> search results for <span><%= searchTitle %></span>
+      </h1>
     </header>
     <div class="card-container">
       <!-- TODO: TO LOOP THROUGH DATA -->
+      <% data.forEach(movie => { %>
       <div class="card">
         <!-- TODO: REPLACE WITH DATA CONTENT -->
-        card content
+        <div class="card-img">
+          <img src="<%= movie.Poster %>" alt="movie poster" />
+        </div>
+        <div class="card-content">
+          <%= movie.Title %> <%= movie.Year %> <%= movie.Type %>
+        </div>
       </div>
+      <% }) %>
     </div>
   </div>
 </div>

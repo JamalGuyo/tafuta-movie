@@ -5,6 +5,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+// TODO: REMOVE TEST DATA BELOW. TO
 const data = {
   Search: [
     {
@@ -58,6 +59,7 @@ const data = {
     },
   ],
 };
+const searchTitle = "WhatToSearch";
 
 // routes
 app.get("/", (req, res) => {
@@ -65,7 +67,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/results", (req, res) => {
-  res.render("resultsPage");
+  res.render("resultsPage", { data: data.Search, searchTitle });
 });
 
 app.get("*", (req, res) => {
