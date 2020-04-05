@@ -8,21 +8,22 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// TODO: REMOVE TEST DATA BELOW. TO
-const searchTitle = "WhatToSearch";
-
 // routes
 app.get("/", (req, res) => {
   res.render("home");
 });
 
 app.get("/results", (req, res) => {
+  let searchTerm = req.query.searchTerm;
   request(
-    "http://www.omdbapi.com/?s=iron&apikey=thewdb",
+    `http://www.omdbapi.com/?s=${searchTerm}&apikey=thewdb`,
     (error, response, body) => {
       if (!error && response.statusCode === 200) {
         let data = JSON.parse(body);
-        res.render("resultsPage", { data: data.Search, searchTitle });
+        res.render("resultsPage", {
+          data: data.Search,
+          searchTerm,
+        });
       }
     }
   );
