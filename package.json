@@ -23,5 +23,12 @@
   "bugs": {
     "url": "https://github.com/JamalGuyo/tafuta-movie/issues"
   },
-  "homepage": "https://github.com/JamalGuyo/tafuta-movie#readme"
+  "homepage": "https://github.com/JamalGuyo/tafuta-movie#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "locus": "^2.0.4",
+    "request": "^2.88.2"
+  }
 }
